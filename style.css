@@ -1,0 +1,165 @@
+/* Плавный переход фона */
+body {
+    transition: background-color 1s ease;
+    margin: 0;
+    padding: 0;
+}
+
+#photoshopButton {
+    background-image: url('photos/photoshop.png'); /* Изображение для Photoshop */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#illustratorButton {
+    background-image: url('photos/illustrator.png'); /* Изображение для Illustrator */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#afterEffectsButton {
+    background-image: url('photos/Ae.png'); /* Изображение для After Effects */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Прямоугольник слева */
+#leftRectangle {
+    transition: background-color 1s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 100%;
+    background-color: #e5e5e5;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* Центрируем кнопки по горизонтали */
+    justify-content: flex-start; /* Размещаем первую кнопку сверху */
+    /* Убираем padding-top, чтобы первая кнопка была прижата к верхнему краю */
+}
+
+/* Блок с квадратными кнопками */
+#buttonContainer {
+    display: flex;
+    flex-direction: column;  /* Размещаем кнопки вертикально */
+    justify-content: center; /* Центрируем кнопки по вертикали */
+    align-items: center;     /* Центрируем кнопки по горизонтали */
+    height: 100%;            /* Занимает всю высоту прямоугольника */
+}
+
+/* Первая кнопка будет круглой */
+.roundButton {
+    border-radius: 50%; /* Округляем кнопку */
+    width: 70px; /* Устанавливаем фиксированную ширину для круглой кнопки */
+    height: 70px; /* Устанавливаем такую же высоту для круглой формы */
+    background-image: url('photos/1efb49d4-fc96-6ac0-1f27-532d1b53cb33.png'); /* Указываем путь к изображению */
+    background-size: cover; /* Изображение покрывает всю кнопку */
+    background-position: center; /* Центрируем изображение */
+    background-repeat: no-repeat; /* Не повторяем изображение */
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px; /* Уменьшаем размер текста */
+    margin-top: 5px; /* Небольшой отступ сверху */
+    margin-bottom: 20px; /* Отступ снизу */
+    flex-shrink: 0; /* Останавливаем сжатие кнопки */
+}
+
+/* Кнопки внутри блока с квадратными кнопками */
+.squareButton {
+    width: 60px; /* Устанавливаем фиксированную ширину */
+    height: 60px; /* Устанавливаем фиксированную высоту для квадратной формы */
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    margin: 10px 0; /* Отступ между кнопками */
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px; /* Уменьшаем размер текста */
+}
+
+#centerText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    font-weight: bold;
+    color: #c5c5c5;
+    opacity: 1;
+    font-family: 'Roboto', sans-serif;
+}
+
+#fullScreenSquare {
+    position: fixed;
+    top: 0;
+    left: 80px; /* Начинаем от 80px, после левого прямоугольника */
+    width: calc(100% - 80px); /* Занимает оставшееся пространство справа */
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0); /* Прозрачный темный фон */
+    display: none; /* Изначально скрыт */
+    z-index: 2; /* Чтобы он был поверх других элементов */
+    padding: 3%; /* Отступы для содержимого */
+    box-sizing: border-box;
+    color: white;
+}
+
+#instalButton {
+    width: 30%;
+    height: 50px;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 3%; /* Отступ снизу для картинки */
+    border-radius: 20px;
+    border: none;
+    font-size: 24px;
+}
+
+/* Картинка внутри квадратного блока */
+.imageInsideSquare {
+    width: min(200px, 20vw);  /* Максимум 200px, но уменьшается до 20% экрана */
+    height: min(200px, 20vw); /* Высота тоже адаптируется */
+    object-fit: cover;
+    margin-bottom: 3%;
+    border-radius: 25%;
+}
+
+.textInsideSquare {
+    width: 30%;
+    line-height: 1.5;
+    font-family: 'Roboto', sans-serif;
+    font-size: clamp(1px, 1.3vw, 21px);
+    word-wrap: break-word;
+}
+
+#rightRectangle {
+    position: fixed;
+    top: 0;
+    left: 45%; /* Начинаем от 80px, после левого прямоугольника */
+    width: 1920px;
+    height: 1080px;
+    background-image: url('photos/ps1.png'); /* Укажи путь к своей картинке */
+    background-size: cover; /* Картинка растягивается на всю ширину и высоту */
+    background-position: center; /* Центрируем картинку */
+    z-index: 0; /* Картинка будет под остальными элементами */
+}
+
+#rightRectangle, .imageInsideSquare, #instalButton, .textInsideSquare{
+    opacity: 0;
+    transition: opacity 1s ease-in-out; /* Плавное изменение прозрачности за 2 секунды */
+}
+
+/* Когда добавляем класс 'visible', элементы становятся видимыми */
+#rightRectangle.visible, .imageInsideSquare.visible, #instalButton.visible, .textInsideSquare.visible{
+    opacity: 1;
+}
+
